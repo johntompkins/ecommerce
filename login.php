@@ -2,7 +2,7 @@
 <html>
   <body>
     <?php
-          $db = mysqli_connect('localhost','root','dot.pan-79','Ecomm') or die('Error connecting to MySQL server.');
+          $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm') or die('Error connecting to MySQL server.');
           session_start();
           if($_SERVER["REQUEST_METHOD"] == "POST"){
               $currusername = $_POST['username'];
