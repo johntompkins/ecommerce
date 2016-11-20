@@ -1,0 +1,39 @@
+
+<html>
+  <body>
+    <?php
+          $db = mysqli_connect('localhost','root','dot.pan-79','Ecomm') or die('Error connecting to MySQL server.');
+          session_start();
+          if($_SERVER["REQUEST_METHOD"] == "POST"){
+              $currusername = $_POST['username'];
+              $currpass = $_POST['password'];
+              $sql = "SELECT `id`, `username` FROM `login` WHERE `username`='".$currusername."' and `password`='".$currpass."';";
+              $result = mysqli_query($db, $sql);
+              $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+              $count = mysqli_num_rows($result);
+              if($count ==1){
+                $_SESSION['user_login'] = $row['username'];
+
+                header("location: landing.php", true);
+              }
+              else{
+                echo "INVALID PASSWORD/USERNAME COMBO";
+              }
+          }
+
+    ?>
+    <form method="POST">
+      <h4> Login Username/password</h4>
+      <input type="text" name="username"><br>
+      <input type="password"  name="password" required><br>
+      <button class = "btn btn-lg btn-primary btn-block" type = "submit"
+               name = "login">Login</button>
+    </form>
+    <form method="link" ACTION="createacct.php">
+      <input type="submit" VALUE="Create New Account">
+      </form>
+
+  </body>
+
+
+</html>
