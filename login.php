@@ -1,4 +1,3 @@
-
 <html>
   <body>
     <?php
@@ -7,36 +6,31 @@
           if($_SERVER["REQUEST_METHOD"] == "POST"){
               $currusername = $_POST['username'];
               $currpass = $_POST['password'];
-
-	      $sql1 = "SELECT `cid` FROM `customer` WHERE `cid`='".$currusername."' and `password`='".$currpass."';";
-
-              $sql = "SELECT `sid` FROM `staff` WHERE `sid`='".$currusername."' and `pw`='".$currpass."';";
-		
-	      // first check if the query from the customer table works, if not try the staff table. If both fail, then invalid
-	      if(mysqli_query($db, $sql))
-	      { $result = mysqli_query($db, $sql);
-		$type = "cust";
-	      }
-	      else
-	      { $result = mysqli_query($db, $sql1);	
-		$type = "staff";      
-		}
-
+              $sql = "SELECT `type`, `username` FROM `login` WHERE `username`='".$currusername."' and `password`='".$currpass."';";
+              $result = mysqli_query($db, $sql);
               $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	      if($type == "cust") {$id = $row['cid'];}
-	      else{$id = $row['sid'] ;}
-
               $count = mysqli_num_rows($result);
-              if($count ==1){
-                $_SESSION['user_login'] = $id;
 
-                header("location: landing.php", true);
+	      if($row['type'] == "customer")
+	      {
+		$header = "location: landing.php";
+		}
+	      else if ($row['type'] == "manager")
+		{
+		$header = "location: landing_manager.php";
+		}	
+              else{
+		$header = "location: landing_staff.php";
+		}	      
+
+              if($count ==1){
+                $_SESSION['user_login'] = $row['username'];
+                header($header, true);
               }
               else{
                 echo "INVALID PASSWORD/USERNAME COMBO";
               }
           }
-
     ?>
     <form method="POST">
       <h4> Login Username/password</h4>
