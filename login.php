@@ -8,7 +8,7 @@
               $currusername = $_POST['username'];
               $currpass = $_POST['password'];
 
-	      $sql1 = "SELECT" `cid` FROM `customer` WHERE `cid`='".$currusername."' and `password`='".$currpass."';";
+	      $sql1 = "SELECT `cid` FROM `customer` WHERE `cid`='".$currusername."' and `password`='".$currpass."';";
 
               $sql = "SELECT `sid` FROM `staff` WHERE `sid`='".$currusername."' and `pw`='".$currpass."';";
 		
