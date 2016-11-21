@@ -14,6 +14,10 @@
 	      if($row['type'] == "customer")
 	      {
 		$header = "location: landing.php";
+		}
+	      else if ($row['type'] == "manager")
+		{
+		$header = "location: landing_manager.php";
 		}	
               else{
 		$header = "location: landing_staff.php";
