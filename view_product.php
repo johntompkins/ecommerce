@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "select * 
-	from product";
+	from Product";
 echo $sql;
 echo "<br>";
 
