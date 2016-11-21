@@ -15,15 +15,20 @@
 	      // first check if the query from the customer table works, if not try the staff table. If both fail, then invalid
 	      if(mysqli_query($db, $sql))
 	      { $result = mysqli_query($db, $sql);
+		$type = "cust";
 	      }
 	      else
 	      { $result = mysqli_query($db, $sql1);	
-	      }
+		$type = "staff";      
+		}
 
               $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	      if($type == "cust") {$id = $row['cid'];}
+	      else{$id = $row['sid'] ;}
+
               $count = mysqli_num_rows($result);
               if($count ==1){
-                $_SESSION['user_login'] = $row['username'];
+                $_SESSION['user_login'] = $id;
 
                 header("location: landing.php", true);
               }
