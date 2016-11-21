@@ -10,7 +10,7 @@
                 $disPrice = $row['price'] * (1 - (.01 * $row['discount']));
                 echo "<tr> <td> <img class='formel' src ='http://lorempixel.com/100/100/''></td> <td>".$row['pname']."</td> <td>".$row['price']."</td> <td>".$disPrice."</td> <td>".$row['quantity']."</td>
                     
-		<td><form method= 'POST' action='update_stock.php ' > Update quantity:<input = 'text' name = 'quant'> <button class = 'btn btn-lg btn-primary btn-block' type = 'submit' name='pid' value='".$row['pid']."' </button></form>
+		<td><form method= 'POST' action='update_stock.php ' > Update quantity:<input = 'text' name = 'quant'> <button class = 'btn btn-lg btn-primary btn-block formel' type = 'submit' name='pid' value='".$row['pid']."'>Update </button></form>
 
  </td>
 
