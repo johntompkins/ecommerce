@@ -21,9 +21,15 @@ $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306)
  <?php
       if($_SERVER["REQUEST_METHOD"] == "POST"){
           $sql = "INSERT INTO `customer` (`cid`, `password`, `name`, `address`, `payment`, `type`) VALUES ('".$_POST['cid']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['address']."', '".$_POST['payment']."', '".$_POST['typeSelect']."');";
-          $result = mysqli_query($db, $sql);
+       
+	$sql_staff = "INSERT INTO `staff` (`sid`, `pw`, `sType`) VALUES (;".$_POST['cid']."', '".$_POST['password']."', '".$_POST['typeSelect']."');";
 
-	  $sql_staff = "INSERT INTO `staff` (`sid`, `pw`, `sType`) VALUES (;".$_POST['cid']."', '".$_POST['password']."', '".$_POST['typeSelect']."');";
+ 	//insert to customer table if customer, insert to staff table otherwise
+	if($_POST['typeSelect']== 'customer')
+	{ 
+	$result = mysqli_query($db, $sql);
+	}
+	else{$result = mysqli_query($db, $sql_staff); }
 
           $count = mysqli_num_rows($result);
           if($result){
