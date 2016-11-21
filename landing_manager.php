@@ -13,7 +13,7 @@
 
       <h4> Manager's have ability to :</h4>
 
-	<form method="link" ACTION="staff_restock_store.php">
+	<form method="link" ACTION="manager_restock_store.php">
       <input type="submit" VALUE="View Inventory/Restock store">
       </form>
 
@@ -25,7 +25,7 @@
       <input type="submit" VALUE="View Sales Statistics">
       </form>
 
-	 <form method="link" ACTION="manager_restock_store.php">
+	 <form method="link" ACTION="manager_edit_discount.php">
       <input type="submit" VALUE="View/edit promotion rates">
       </form>
 
