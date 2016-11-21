@@ -7,7 +7,7 @@
       <title>Books and Games store : account page</title>
    </head>
    <body>
-      <h1>Hello! Account <?php  echo $_SESSION['user_login']?>'s page</h1>
+      <h1>Hello! Account <?php  echo $_SESSION['cid']?>'s page</h1>
       <h2><a href = "logout.php">Sign Out</a></h2>
    </body>
 

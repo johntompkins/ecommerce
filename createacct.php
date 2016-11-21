@@ -27,7 +27,7 @@ $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306)
  	//insert to customer table if customer, insert to staff table otherwise
 	if($_POST['typeSelect']== 'customer')
 	{ 
-	$result = mysqli_query($db, $sql);
+		$result = mysqli_query($db, $sql);
 	}
 	else{$result = mysqli_query($db, $sql_staff); }
 
