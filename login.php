@@ -13,7 +13,7 @@
               $sql = "SELECT `sid` FROM `staff` WHERE `sid`='".$currusername."' and `pw`='".$currpass."';";
 		
 	      // first check if the query from the customer table works, if not try the staff table. If both fail, then invalid
-	      if(mysqil_query($db, $sql)
+	      if(mysqil_query($db, $sql))
 	      { $result = mysqli_query($db, $sql);}
 	      else
 	      { $result = mysqli_query($db, $sql1);}
