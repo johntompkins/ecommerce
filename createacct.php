@@ -20,12 +20,20 @@ $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306)
   </form>
  <?php
       if($_SERVER["REQUEST_METHOD"] == "POST"){
-	
+
 	if($_POST['typeSelect'] == "customer")
 	{
+    $query = "SELECT MAX(`cartid`) as maxID FROM `in_cart`;";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $newID = $row['maxID'] + 1;
+    $usr = $_POST['username'];
+    $pw = $_POST['password'];
+    $name = $_POST['name'];
+    $addr = $_POST['address'];
+    $pay = $_POST['payment'];
+	$cust = "INSERT INTO `customer` (`cid`, `password`, `name`, `address`, `payment`, `cartid`) VALUES ('$usr', '$pw', '$name', '$addr', '$pay', $newID );";
 
-	$cust = "INSERT INTO `customer` (`cid`, `password`, `name`, `address`, `payment`, `type`) VALUES ('".$_POST['username']."', '".$_POST['password']."', '".$_POST['name']."', '".$_POST['address']."', '".$_POST['payment']."', '".$_POST['typeSelect']."');";
-       
 	mysqli_query($db, $cust);
 
 	}
