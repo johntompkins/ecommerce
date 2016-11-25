@@ -17,7 +17,7 @@
       <input type="submit" VALUE="View Inventory/Restock store">
       </form>
 
-	   <form method="link" ACTION="staff_ship_orders.php">
+	   <form method="link" ACTION="manager_ship_orders.php">
       <input type="submit" VALUE="View orders/Ship pending orders">
       </form>
 
