@@ -4,7 +4,7 @@
           
           
 	if(isset($_POST["status"])){
-              $checkquery = "UPDATE `orders` set `status`=1  WHERE `cartid`=".$_POST['cartid']." ";
+              $checkquery = "UPDATE `orders` set `status`=1  WHERE `cartid`=".$_POST['status']." ";
                         $result = mysqli_query($db, $checkquery);
                         if($result)
 			{
