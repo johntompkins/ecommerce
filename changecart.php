@@ -37,12 +37,7 @@
 
 ?>
 
-</td><td></td></tr>
-<tr><td></td><td></td><td></td>
-  <td><form method='POST' action="submitorder.php"><button class = "btn btn-lg btn-primary btn-block formel" type = "submit"
-         name = "Submit">Submit Order</button> </form></td>
-  <td><form method='POST' action="changecart.php"><button class = "btn btn-lg btn-primary btn-block formel" type = "submit"
-           name = "change">Change quantity</button> </form></td> </table>
-
+</td><td></td></tr> </table>
+<h2><a href = "landing.php">Home</a></h2>
 </body>
 </html>
