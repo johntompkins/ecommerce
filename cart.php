@@ -46,5 +46,6 @@
   <td><form method='POST' action="changecart.php"><button class = "btn btn-lg btn-primary btn-block formel" type = "submit"
         value="<?php echo $sum;?>"   name ="change">Change quantity</button> </form></td> </table>
 <h2><a href = "logout.php">Sign Out</a></h2>
+<h2><a href = "landing.php">Home</a></h2>
 </body>
 </html>
