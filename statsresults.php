@@ -11,6 +11,8 @@
   }
 </style>
 
+<h2><a href = 'landing_manager.php'> Return to manager options </a></h2>
+
 <body>
   <div>
   <form method="POST" action="statsresults.php">
@@ -27,14 +29,15 @@
   </form>
   </div>
 
-
-<?php
-           // $name = $_POST['pname'];
+<?php 
             $type = $_POST['btype'];
            // $price = $_POST['price'];
-            $whereQuer= "SELECT * FROM `Product`";
-            if( $type ){
-              $whereQuer .= " WHERE ";
+            $whereQuer= " select p.`pid`, p.`pname`, p.`ptype`, p.`price`, o.`date`
+from Product p, in_cart i, orders o
+where i.`pid`=p.`pid`
+and i.`cartid`=o.`cartid`  ";
+            if($type){
+             // $whereQuer .= " WHERE ";
               //if($name){
                // $whereQuer .= "`pname` = '".$name."' AND ";
              // }
@@ -45,15 +48,18 @@
               //  $whereQuer.="`price` >= ".$price;
              // }
               if($type == "1"){
-                $whereQuer.= " AND `ptype` = ".$type;
+                $whereQuer.= " AND o.`date` BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()";
               }
 		
-		else if ($type == "2") {
-		$whereQuer.= " AND `ptype` = ".$type;
+		elseif ($type == "2") {
+		$whereQuer.= " AND o.`date` BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()";
 		}
 
-		else ($type == "0") {
-		$whereQuer.= " AND `ptype` = ".$type;
+		elseif ($type == "0") {
+		$whereQuer.= " AND o.`.date` BETWEEN DATE_SUB(NOW(), INTERVAL 1 YEAR) AND NOW()";
+		}
+		else{
+		echo "type failed";
 		}
 
             }
@@ -61,11 +67,11 @@
             $whereQuer .= ";";
             if(mysqli_query($db, $whereQuer)){
               $result = mysqli_query($db, $whereQuer);
-              echo "<br><table border = '0' style='float: left'><tr><th>Image</th><th>Name</th><th>Original Price</th><th> Discounted Price</th> <th>Quantity</th></tr>";
+              echo "<br><table border = '0' style='float: left'><tr><th> Image </th><th>PID</th><th>Product Name</th><th>Product Type</th><th> Price</th> <th> Dates</th></tr>";
               while($row = $result->fetch_assoc()){
-                $disPrice = $row['price'] * (1 - (.01 * $row['discount']));
-                echo "<tr> <td> <img class='formel' src ='http://lorempixel.com/100/100/''></td> <td>".$row['pname']."</td> <td>".$row['price']."</td> <td>".$disPrice."</td> <td>".$row['quantity']."</td>
-                      <td><form method='POST' action ='addtocart.php'><button class = 'btn btn-lg btn-primary btn-block' value='".$row['pid']."' type = 'submit' name = 'add' >Add to Cart</button></form> </td> </tr>";
+                //$disPrice = $row['price'] * (1 - (.01 * $row['discount']));
+                echo "<tr> <td> <img class='formel' src ='http://lorempixel.com/100/100/''></td><td>".$row['pid']."</td> <td>".$row['pname']."</td><td>".$row['ptype']." </td> <td>".$row['price']."</td> <td>".$row['date']."</td>
+                </tr>";
               }
               echo "</table>";
             }
@@ -76,6 +82,5 @@
 
 
 <h2><a href = "logout.php">Sign Out</a></h2>
-<h2><a href = "landing_manager.php">Manager options</a></h2>
 </body>
 </html>
