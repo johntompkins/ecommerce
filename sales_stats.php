@@ -4,6 +4,8 @@
 <?php
   $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306) or die('Error connecting to MySQL server.');
  ?>
+
+<h2><a href = 'landing_manager.php'>Return to manager options</a></h2>
 <head></head>
 <style>
   .formel{
