@@ -12,7 +12,7 @@
 </style>
 
 <h2><a href = 'landing_manager.php'> Return to manager options </a></h2>
-
+<h2><a href = 'logout.php'> Logout </a></h2>
 <body>
   <div>
   <form method="POST" action="statsresults.php">
@@ -37,16 +37,7 @@ from Product p, in_cart i, orders o
 where i.`pid`=p.`pid`
 and i.`cartid`=o.`cartid`  ";
             if($type){
-             // $whereQuer .= " WHERE ";
-              //if($name){
-               // $whereQuer .= "`pname` = '".$name."' AND ";
-             // }
-             // if($price){
-              //  $whereQuer.="`price` <= ".$price;
-             // }
-             // else{
-              //  $whereQuer.="`price` >= ".$price;
-             // }
+            
               if($type == "1"){
                 $whereQuer.= " AND o.`date` BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()";
               }
@@ -80,7 +71,5 @@ and i.`cartid`=o.`cartid`  ";
             }
 ?>
 
-
-<h2><a href = "logout.php">Sign Out</a></h2>
 </body>
 </html>
