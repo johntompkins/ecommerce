@@ -1,7 +1,6 @@
 <html>
 <?php
   $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306) or die('Error connecting to MySQL server.');
-  include('session.php');
  ?>
 <head></head>
 <style>
@@ -14,9 +13,8 @@
 </style>
 
 <body>
-  <h1>Hello! Account <?php  echo $_SESSION['user_login']?>'s page</h1>
   <div>
-  <form method="POST">
+  <form method="POST" action="searchresults.php">
     <h4> Search for items</h4><br>
     <input class="formel" type="text" name="pname">
     <div class="formel" >
@@ -40,10 +38,6 @@
 
 
 <?php
-    
-
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-
             $name = $_POST['pname'];
             $type = $_POST['btype'];
             $price = $_POST['price'];
@@ -73,7 +67,7 @@
               while($row = $result->fetch_assoc()){
                 $disPrice = $row['price'] * (1 - (.01 * $row['discount']));
                 echo "<tr> <td> <img class='formel' src ='http://lorempixel.com/100/100/''></td> <td>".$row['pname']."</td> <td>".$row['price']."</td> <td>".$disPrice."</td> <td>".$row['quantity']."</td>
-                      <td><form method='POST' action ='addtocart.php'><button class = 'btn btn-lg btn-primary btn-block' value='".$row['pid']."' type = 'submit' name = 'pid' >Add to Cart</button></form> </td> </tr>";
+                      <td><form method='POST' action ='addtocart.php'><button class = 'btn btn-lg btn-primary btn-block' value='".$row['pid']."' type = 'submit' name = 'add' >Add to Cart</button></form> </td> </tr>";
               }
               echo "</table>";
             }
@@ -82,7 +76,6 @@
             }
 
 
-    }
 
 ?>
 
