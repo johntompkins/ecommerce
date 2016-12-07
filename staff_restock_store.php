@@ -8,7 +8,7 @@
               echo "
 <h2><a href ='landing_staff.php'>Return to staff options</a></h2>
 
-<br><table border = '0' style='float: left'><tr><th>Image</th><th>Name</th><th>Original Price</th><th> Discounted Price</th> <th>Quantity</th></tr>";
+<br><table cellpadding = '10' border = '0' style='float: left'><tr><th>Image</th><th>Name</th><th>Original Price</th><th> Discounted Price</th> <th>Quantity</th></tr>";
               while($row = $result->fetch_assoc()){
                 $disPrice = $row['price'] * (1 - (.01 * $row['discount']));
                 echo "<tr> <td> <img class='formel' src ='http://lorempixel.com/100/100/''></td> <td>".$row['pname']."</td> <td>".$row['price']."</td> <td>".$disPrice."</td> <td>".$row['quantity']."</td>

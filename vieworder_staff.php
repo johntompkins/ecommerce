@@ -3,7 +3,7 @@
             $db = mysqli_connect('jtto224.netlab.uky.edu','root','dot.pan-79','Ecomm', 3306) or die('Error connecting to MySQL server.');
             include('session.php');
             $usr = $_SESSION['user_login'];
-            echo "<h1>".$usr."'s order</h1>";
+           
             $cartid = $_POST['cart'];
             $itemQuery = "SELECT `pname`, `in_cart`.`quantity`, `discount`, `price` FROM `in_cart` INNER JOIN `Product` ON (`Product`.`pid` = `in_cart`.`pid`) WHERE `in_cart`.`cartid` = '$cartid';";
             $result = mysqli_query($db, $itemQuery);
@@ -21,6 +21,7 @@
 
 </td><td></td></tr> </table>
 <h2><a href = "logout.php">Sign Out</a></h2>
-<h2><a href = "landing.php">Home</a></h2>
+<h2><a href = "landing_staff.php">Home</a></h2>
 </body>
 </html>
+

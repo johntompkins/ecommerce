@@ -13,13 +13,16 @@ group by `cid`,`cartid`  ";
 <h2><a href ='landing_staff.php'>Return to staff options</a></h2>
 <br><table border = '0' style='float: left'><tr><th>Customer ID</th><th>Cart ID </th></th><th>Products</th><th> Total Price</th> <th>Status</th></tr>";
               while($row = $result->fetch_assoc()){
+
+//		if($row['status'] = 0){
+
                 //$disPrice = $row['price'] * (1 - (.01 * $row['discount']));
-                echo "<tr> <td> ".$row['cid']." <td> ".$row['cartid']."</td> <td>".$row['pid']."</td> <td>".$row['total']."</td> <td>".$row['status']."</td>
+                echo "<tr> <td> ".$row['cid']." <td> ".$row['cartid']."</td><td> <form method='POST' action='vieworder_staff.php'> <button class = 'btn btn-lg btn-primary btn-block' value='".$row['cartid']."' type = 'submit' name = 'cart' > View Order</button> </form> </td> <td>".$row['total']."</td> <td>".$row['status']."</td>
                     
 		<td><form method= 'POST' action='update_status.php'> <button type='submit' name='status' value='".$row['cartid']."'>Ship It </button></form>
  </td>
    </tr>";
-              }
+              }//}
               echo "</table> <br> ";
             }
             else{
