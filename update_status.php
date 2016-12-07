@@ -25,6 +25,25 @@ where `in_cart`.cartid=".$_POST['status']."  and `in_cart`.quantity>`Product`.qu
 			
 			else{//this is where you want to update status of items that are not greater
 			echo "ready to update to shipped";
+	      $changequant = "Select `in_cart`.`quantity`,`pid`  from `in_cart` inner join `Product`
+on (`in_cart`.`pid`=`Product`.`pid`)
+where `in_cart`.cartid=".$_POST['status']."  ";
+		$result_quant = mysqli_query($db, $changequant);
+		
+		while($row1 = $result_quant->fetch_assoc()) {
+			$new_quant = $row1['quantity'];
+			echo "$new_quant";
+			$new_pid = $row1['pid'];
+			$update_quant = "UPDATE `Product` set `quantity`=`quantity`-$new_quant where `pid`=$new_pid ";
+			$up_quant_result = mysqli_query($db, $update_quant);
+			if($up_quant_result){ echo "each product update success";}
+			else { echo "product update failed"; }
+
+		}
+
+
+
+
               $checkquery = "UPDATE `orders` set `status`=1  WHERE `cartid`=".$_POST['status']." ";
                         $result = mysqli_query($db, $checkquery);
                        if($result)
