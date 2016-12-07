@@ -16,15 +16,15 @@ group by `cid`,`cartid`  ";
 <br><table border = '0' style='float: left'><tr><th>Customer ID</th><th>Cart ID </th></th><th>Products</th><th> Total Price</th> <th>Status</th></tr>";
               while($row = $result->fetch_assoc()){
 
-//              if($row['status'] = 0){
+              if($row['status'] == 0){
 
                 //$disPrice = $row['price'] * (1 - (.01 * $row['discount']));
                 echo "<tr> <td> ".$row['cid']." <td> ".$row['cartid']."</td><td> <form method='POST' action='vieworder_manager.php'> <button class = 'btn btn-lg btn-primary btn-block' value='".$row['cartid']."' type = 'submit' name = 'cart' > View Order</button> </form> </td> <td>".$row['total']."</td> <td>".$row['status']."</td>
 
-                <td><form method= 'POST' action='update_status.php'> <button type='submit' name='status' value='".$row['cartid']."'>Ship It </button></form>
+                <td><form method= 'POST' action='update_status_manager.php'> <button type='submit' name='status' value='".$row['cartid']."'>Ship It </button></form>
  </td>
    </tr>";
-              }//}
+              }}
               echo "</table> <br> ";
             }
             else{
